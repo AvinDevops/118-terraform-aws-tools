@@ -9,6 +9,7 @@ module "jenkins" {
   subnet_id = "subnet-0cd5b9a7016bd1324" #replace your Subnet
   ami = data.aws_ami.ami_info.id
   user_data = file("jenkins.sh")
+  create_security_group = false
   tags = {
     Name = "jenkins-master"
   }
@@ -25,6 +26,7 @@ module "jenkins_agent" {
   subnet_id = "subnet-0cd5b9a7016bd1324"
   ami = data.aws_ami.ami_info.id
   user_data = file("jenkins-agent.sh")
+  create_security_group = false
   tags = {
     Name = "jenkins-agent"
   }
